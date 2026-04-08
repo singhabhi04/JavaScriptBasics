@@ -13,3 +13,6 @@ let rollnumber = "55"
 let convRollNumber = Number(rollnumber)
 console.log(convRollNumber)
 console.log(typeof(convRollNumber))
+//NAN ---> When you try to convert and string(alphabets) to a  Number
+let city = "Kolkata"
+console.log(Number(city))
