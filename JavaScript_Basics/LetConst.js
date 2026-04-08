@@ -17,9 +17,9 @@ count = 2; // allowed
 console.log(count); // 2
 //✔ Example 3 — redeclaration NOT allowed
 let a = 10;
-let a = 20; // ❌ SyntaxError
+//let a = 20; // ❌ SyntaxError
 
-✔ Example 4 — temporal dead zone (TDZ)
+//✔ Example 4 — temporal dead zone (TDZ)
 
 console.log(z); // ❌ ReferenceError
 let z = 30;
