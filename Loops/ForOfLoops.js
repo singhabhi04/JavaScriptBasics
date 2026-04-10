@@ -6,7 +6,8 @@
 let marks = [56,76,87,90,43,86,88]
 console.log(marks)
  console.log("********************>>>>")
- // if you want to perform any new assigment to the variable then use Let else we can use Const
+ // In a for…of loop, use const when the loop variable should not be reassigned, 
+ // and use let only when you must reassign the loop variable.
 for(let mark of marks){
     console.log(mark)
 }
