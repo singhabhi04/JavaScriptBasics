@@ -28,3 +28,5 @@ nums.forEach((value, index, arr) => {
 });
 
 console.log(nums); // [10, 20, 30]
+
+
