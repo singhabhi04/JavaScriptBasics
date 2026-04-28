@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Arrays - Comprehensive Notes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 20px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        
+        h2 {
+            color: #2980b9;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+            font-size: 1.8em;
+        }
+        
+        h3 {
+            color: #3498db;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        h4 {
+            color: #5d6d7b;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .important {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .note {
+            background-color: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .tip {
+            background-color: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #c7254e;
+        }
+        
+        .code-block {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+        
+        .keyword {
+            color: #e74c3c;
+        }
+        
+        .string {
+            color: #2ecc71;
+        }
+        
+        .comment {
+            color: #95a5a6;
+        }
+        
+        .number {
+            color: #f39c12;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        table thead {
+            background-color: #34495e;
+            color: white;
+        }
+        
+        table th, table td {
+            padding: 12px 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        
+        table tbody tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+        
+        table tbody tr:hover {
+            background-color: #ecf0f1;
+        }
+        
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .method-card {
+            border: 1px solid #ecf0f1;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+            background-color: #fafafa;
+        }
+        
+        .method-name {
+            color: #c7254e;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .method-signature {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 10px 0;
+            overflow-x: auto;
+        }
+        
+        .mutating {
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .non-mutating {
+            border-left: 4px solid #27ae60;
+        }
+        
+        .table-of-contents {
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 6px;
+            margin: 30px 0;
+        }
+        
+        .table-of-contents h3 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        
+        .table-of-contents ul {
+            margin-left: 20px;
+        }
+        
+        .toc-link {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .toc-link:hover {
+            text-decoration: underline;
+        }
+        
+        .example-section {
+            background-color: #f0f7ff;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+        
+        .page-break {
+            page-break-after: always;
+            margin-bottom: 40px;
+            border-bottom: 2px dashed #bbb;
+            padding-bottom: 20px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        
+        .category-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        .badge-mutating {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .badge-non-mutating {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .comparison-table {
+            margin: 20px 0;
+        }
+        
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Title Section -->
+        <h1>JavaScript Arrays</h1>
+        <p class="subtitle">Comprehensive Guide to Array Concepts and Methods</p>
+        
+        <!-- Table of Contents -->
+        <div class="table-of-contents">
+            <h3>📑 Table of Contents</h3>
+            <ul>
+                <li><a href="#introduction" class="toc-link">Introduction to Arrays</a></li>
+                <li><a href="#creating-arrays" class="toc-link">Creating and Initializing Arrays</a></li>
+                <li><a href="#mutating-methods" class="toc-link">Mutating Methods</a></li>
+                <li><a href="#non-mutating-methods" class="toc-link">Non-Mutating Methods</a></li>
+                <li><a href="#iteration-methods" class="toc-link">Iteration Methods</a></li>
+                <li><a href="#search-methods" class="toc-link">Search Methods</a></li>
+                <li><a href="#practical-uses" class="toc-link">Practical Use Cases & Examples</a></li>
+                <li><a href="#best-practices" class="toc-link">Best Practices & Quick Reference</a></li>
+            </ul>
+        </div>
+        
+        <!-- Introduction Section -->
+        <h2 id="introduction">1. Introduction to Arrays</h2>
+        
+        <h3>What is an Array?</h3>
+        <p>An array is an ordered collection of elements that can store multiple values of any data type in a single variable. Arrays in JavaScript are objects that use numeric indices starting from 0 to access elements.</p>
+        
+        <div class="note">
+            <strong>🔹 Key Characteristics:</strong>
+            <ul>
+                <li>Arrays are zero-indexed (first element is at index 0)</li>
+                <li>Arrays can store mixed data types (numbers, strings, objects, functions, etc.)</li>
+                <li>Arrays are mutable - their contents can be modified after creation</li>
+                <li>Arrays have a <code>length</code> property that returns the number of elements</li>
+                <li>Arrays are objects with numeric properties and a length property</li>
+            </ul>
+        </div>
+        
+        <h3>Basic Array Structure</h3>
+        <div class="code-block">
+<span class="comment">// Creating an array with values</span>
+<span class="keyword">const</span> fruits = [<span class="string">"Apple"</span>, <span class="string">"Banana"</span>, <span class="string">"Orange"</span>];
+
+<span class="comment">// Accessing elements using index</span>
+console.log(fruits[<span class="number">0</span>]);  <span class="comment">// Output: "Apple"</span>
+console.log(fruits[<span class="number">1</span>]);  <span class="comment">// Output: "Banana"</span>
+
+<span class="comment">// Array length</span>
+console.log(fruits.length);  <span class="comment">// Output: 3</span>
+        </div>
+        
+        <!-- Creating Arrays Section -->
+        <h2 id="creating-arrays">2. Creating and Initializing Arrays</h2>
+        
+        <h3>Methods to Create Arrays</h3>
+        
+        <h4>Array Literal Syntax (Most Common)</h4>
+        <div class="code-block">
+<span class="keyword">const</span> arr1 = [];  <span class="comment">// Empty array</span>
+<span class="keyword">const</span> arr2 = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];  <span class="comment">// Array with numbers</span>
+<span class="keyword">const</span> arr3 = [<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>];  <span class="comment">// Array with strings</span>
+<span class="keyword">const</span> arr4 = [<span class="number">1</span>, <span class="string">"two"</span>, <span class="number">3.5</span>, <span class="keyword">true</span>];  <span class="comment">// Mixed types</span>
+        </div>
+        
+        <h4>Array Constructor</h4>
+        <div class="code-block">
+<span class="keyword">const</span> arr5 = <span class="keyword">new</span> Array();  <span class="comment">// Empty array</span>
+<span class="keyword">const</span> arr6 = <span class="keyword">new</span> Array(<span class="number">5</span>);  <span class="comment">// Array with 5 empty slots</span>
+<span class="keyword">const</span> arr7 = <span class="keyword">new</span> Array(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);  <span class="comment">// [1, 2, 3]</span>
+        </div>
+        
+        <div class="page-break"></div>
+        
+        <!-- Mutating Methods Section -->
+        <h2 id="mutating-methods">3. Mutating Methods (Modify Original Array)</h2>
+        
+        <p>Mutating methods change the original array and return a value. Use these when you want to permanently modify the array.</p>
+        
+        <!-- push() -->
+        <div class="method-card mutating">
+            <span class="category-badge badge-mutating">MUTATING</span>
+            <div class="method-name">📌 push()</div>
+            <div class="method-signature">array.push(element1, element2, ..., elementN)</div>
+            <p><strong>Purpose:</strong> Adds one or more elements to the end of an array and returns the new length.</p>
+            <p><strong>Returns:</strong> The new length of the array.</p>
+            
+            <h4>Example:</h4>
+            <div class="code-block">
+<span class="keyword">const</span> fruits = [<span class="string">"Apple"</span>, <span class="string">"Banana"</span>];
+<span class="keyword">const</span> newLength = fruits.push(<span class="string">"Orange"</span>, <span class="string">"Mango"</span>);
+
+console.log(fruits);      <span class="comment">// ["Apple", "Banana", "Orange", "Mango"]</span>
+console.log(newLength);   <span class="comment">// 4</span>
+            </div>
+        </div>
+        
+        <!-- unshift() -->
+        <div class="method-card mutating">
+            <span class="category-badge badge-mutating">MUTATING</span>
+            <div class="method-name">📌 unshift()</div>
+            <div class="method-signature">array.unshift(element1, element2, ..., elementN)</div>
+            <p><strong>Purpose:</strong> Adds one or more elements to the beginning of an array and returns the new length.</p>
+            <p><strong>Returns:</strong> The new length of the array.</p>
+            
+            <h4>Example:</h4>
+            <div class="code-block">
+<span class="keyword">const</span> fruits = [<span class="string">"Banana"</span>, <span class="string">"Orange"</span>];
+<span class="keyword">const</span> newLength = fruits.unshift(<span class="string">"Apple"</span>);
+
+console.log(fruits);      <span class="comment">// ["Apple", "Banana", "Orange"]</span>
+console.log(newLength);   <span class="comment">// 3</span>
+            </div>
+        </div>
+        
+        <!-- pop() -->
+        <div class="method-card mutating">
+            <span class="category-badge badge-mutating">MUTATING</span>
+            <div class="method-name">📌 pop()</div>
+            <div class="method-signature">array.pop()</div>
+            <p><strong>Purpose:</strong> Removes the last element from an array.</p>
+            <p><strong>Returns:</strong> The removed element, or undefined if the array is empty.</p>
+            
+            <h4>Example:</h4>
+            <div class="code-block">
+<span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];
+<span class="keyword">const</span> removed = numbers.pop();
+
+console.log(removed);    <span class="comment">// 4</span>
+console.log(numbers);    <span class="comment">// [1, 2, 3]</span>
+            </div>
+        </div>
+        
+        <!-- shift() -->
+        <div class="method-card mutating">
+            <span class="category-badge badge-mutating">MUTATING</span>
+            <div class="method-name">📌 shift()</div>
+            <div class="method-signature">array.shift()</div>
+            <p><strong>Purpose:</strong> Removes the first element from an array.</p>
+            <p><strong>Returns:</strong> The removed element, or undefined if the array is empty.</p>
+            
+            <h4>Example:</h4>
+            <div class="code-block">
+<span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];
+<span class="keyword">const</span> removed = numbers.shift();
+
+console.log(removed);    <span class="comment">// 1</span>
+console.log(numbers);    <span class="comment">// [2, 3, 4]</span>
+            </div>
+        </div>
+        
+        <!-- splice() -->
+        <div class="method-card mutating">
+            <span class="category-badge badge-mutating">MUTATING</span>
+            <div class="method-name">📌 splice()</div>
+            <div class="method-signature">array.splice(start, deleteCount, item1, item2, ...)</div>
+            <p><strong>Purpose:</strong> Adds or removes elements at any position in the array.</p>
+            <p><strong>Parameters:</strong></p>
+            <ul>
+                <li><code>start</code> - Index where to start (can be negative)</li>
+                <li><code>deleteCount</code> - Number of elements to delete</li>
+                <li><code>item1, item2...</code> - Elements to insert</li>
+            </ul>
+            <p><strong>Returns:</strong> Array of removed elements.</p>
+            
+            <h4>Examples:</h4>
+            <div class="code-block">
+<span class="comment">// 1. Removing Elements</span>
+<span class="keyword">let</span> arr = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>];
+<span class="keyword">let</span> removed = arr.splice(<span class="number">1</span>, <span class="number">2</span>);  <span class="comment">// remove from index 1, delete 2 elements</span>
+console.log(arr);      <span class="comment">// [10, 40, 50]</span>
+console.log(removed);  <span class="comment">// [20, 30]</span>
+
+<span class="comment">// 2. Adding Elements</span>
+<span class="keyword">let</span> arr2 = [<span class="string">"login"</span>, <span class="string">"checkout"</span>, <span class="string">"logout"</span>];
+arr2.splice(<span class="number">1</span>, <span class="number">0</span>, <span class="string">"search"</span>);  <span class="comment">// insert at index 1, delete 0 elements</span>
+console.log(arr2);  <span class="comment">// ["login", "search", "checkout", "logout"]</span>
+
+<span class="comment">// 3. Replacing Elements</span>
+<span class="keyword">let</span> arr3 = [<span class="string">"pass"</span>, <span class="string">"fail"</span>, <span class="string">"skip"</span>];
+arr3.splice(<span class="number">1</span>, <span class="number">1</span>, <span class="string">"error"</span>);  <span class="comment">// replace "fail" with "error"</span>
+console.log(arr3);  <span class="comment">// ["pass", "error", "skip"]</span>
+            </div>
+        </div>
+        
+        <!-- reverse() -->
+        <div class="method-card mutating">
+            <span class="category-badge badge-mutating">MUTATING</span>
+            <div class="method-name">📌 reverse()</div>
+            <div class="method-signature">array.reverse()</div>
+            <p><strong>Purpose:</strong> Reverses the order of elements in an array.</p>
+            <p><strong>Returns:</strong> The reversed array (reference to the original array).</p>
+            
+            <h4>Example:</h4>
+            <div class="code-block">
+<span class="keyword">const</span> fruits = [<span class="string">"Apple"</span>, <span class="string">"Banana"</span>, <span class="string">"Orange"</span>];
+fruits.reverse();
+
+console.log(fruits);  <span class="comment">// ["Orange", "Banana", "Apple"]</span>
+            </div>
+        </div>
+        
+        <!-- sort() -->
+        <div class="method-card mutating">
+            <span class="category-badge badge-mutating">MUTATING</span>
+            <div class="method-name">📌 sort()</div>
+            <div class="method-signature">array.sort([compareFunction])</div>
+            <p><strong>Purpose:</strong> Sorts elements in an array. Default sort is lexicographic (string comparison).</p>
+            <p><strong>Returns:</strong> The sorted array.</p>
+            
+            <h4>Examples:</h4>
+            <div class="code-block">
+<span class="comment">// String sorting (lexicographic)</span>
+<span class="keyword">const</span> fruits = [<span class="string">"Banana"</span>, <span class="string">"Apple"</span>, <span class="string">"Orange"</span>];
+fruits.sort();
+console.log(fruits);  <span class="comment">// ["Apple", "Banana", "Orange"]</span>
+
+<span class="comment">// Numeric sorting with compare function</span>
+<span class="keyword">const</span> numbers = [<span class="number">10</span>, <span class="number">5</span>, <span class="number">40</span>, <span class="number">25</span>, <span class="number">1000</span>];
+numbers.sort((a, b) =&gt; a - b);  <span class="comment">// ascending order</span>
+console.log(numbers);  <span class="comment">// [5, 10, 25, 40, 1000]</span>
+
+numbers.sort((a, b) =&gt; b - a);  <span class="comment">// descending order</span>
+console.log(numbers);  <span class="comment">// [1000, 40, 25, 10, 5]</span>
+            </div>
+        </div>
+        
+        <div class="important">
+            <strong>⚠️ Warning:</strong> The default sort() converts elements to strings and compares them lexicographically. For numbers, use a compare function: <code>array.sort((a, b) => a - b)</code>
+        </div>
+        
+        <h3>⚙️ Advanced: Working with Nested Arrays & Objects</h3>
+        
+        <p>Real-world data often contains nested structures. Here's how to work with them:</p>
+        
+        <h4>Extracting Values from Nested Objects</h4>
+        <div class="code-block">
+<span class="keyword">const</span> people = [
+    { name: <span class="string">"Alice"</span>, address: { city: <span class="string">"NYC"</span>, zip: <span class="string">"10001"</span> }, hobbies: [<span class="string">"reading"</span>, <span class="string">"gaming"</span>] },
+    { name: <span class="string">"Bob"</span>, address: { city: <span class="string">"LA"</span>, zip: <span class="string">"90001"</span> }, hobbies: [<span class="string">"coding"</span>, <span class="string">"hiking"</span>] },
+    { name: <span class="string">"Charlie"</span>, address: { city: <span class="string">"NYC"</span>, zip: <span class="string">"10002"</span> }, hobbies: [<span class="string">"music"</span>] }
+];
+
+<span class="comment">// Extract all city names</span>
+<span class="keyword">const</span> cities = people.map(p =&gt; p.address.city);
+console.log(cities);  <span class="comment">// ["NYC", "LA", "NYC"]</span>
+
+<span class="comment">// Get unique cities</span>
+<span class="keyword">const</span> uniqueCities = [...<span class="keyword">new</span> Set(cities)];
+console.log(uniqueCities);  <span class="comment">// ["NYC", "LA"]</span>
+
+<span class="comment">// Find people from NYC</span>
+<span class="keyword">const</span> nycPeople = people.filter(p =&gt; p.address.city === <span class="string">"NYC"</span>);
+
+<span class="comment">// Flatten all hobbies into one array</span>
+<span class="keyword">const</span> allHobbies = people.reduce((hobbies, person) =&gt;
+    hobbies.concat(person.hobbies), []
+);
+console.log(allHobbies);
+<span class="comment">// ["reading", "gaming", "coding", "hiking", "music"]</span>
+        </div>
+        
+        <h4>Deep Transformation of Nested Objects</h4>
+        <div class="code-block">
+<span class="keyword">const</span> orders = [
+    {
+        orderId: <span class="number">1</span>,
+        items: [
+            { productId: <span class="number">101</span>, name: <span class="string">"Laptop"</span>, price: <span class="number">1200</span>, qty: <span class="number">1</span> },
+            { productId: <span class="number">102</span>, name: <span class="string">"Mouse"</span>, price: <span class="number">25</span>, qty: <span class="number">2</span> }
+        ]
+    },
+    {
+        orderId: <span class="number">2</span>,
+        items: [
+            { productId: <span class="number">103</span>, name: <span class="string">"Keyboard"</span>, price: <span class="number">75</span>, qty: <span class="number">3</span> }
+        ]
+    }
+];
+
+<span class="comment">// Calculate order totals</span>
+<span class="keyword">const</span> orderTotals = orders.map(order =&gt; ({
+    orderId: order.orderId,
+    total: order.items.reduce((sum, item) =&gt;
+        sum + (item.price * item.qty), <span class="number">0</span>
+    ),
+    itemCount: order.items.length
+}));
+
+console.log(orderTotals);
+<span class="comment">// [{ orderId: 1, total: 1250, itemCount: 2 }, { orderId: 2, total: 225, itemCount: 1 }]</span>
+        </div>
+        
+        <div class="page-break"></div>
+        
+        <h3>🔄 Common Patterns & Comparisons</h3>
+        
+        <h4>Pattern: Updating an Item in an Array</h4>
+        <div class="code-block">
+<span class="comment">// Original array</span>
+<span class="keyword">const</span> products = [
+    { id: <span class="number">1</span>, name: <span class="string">"Laptop"</span>, price: <span class="number">1200</span> },
+    { id: <span class="number">2</span>, name: <span class="string">"Phone"</span>, price: <span class="number">800</span> }
+];
+
+<span class="comment">// Method 1: Using map (preferred - non-mutating)</span>
+<span class="keyword">const</span> updated = products.map(p =&gt;
+    p.id === <span class="number">1</span> ? { ...p, price: <span class="number">999</span> } : p
+);
+
+<span class="comment">// Method 2: Using splice (mutating - avoid if possible)</span>
+<span class="keyword">const</span> product = products.find(p =&gt; p.id === <span class="number">1</span>);
+<span class="keyword">const</span> index = products.indexOf(product);
+products.splice(index, <span class="number">1</span>, { ...product, price: <span class="number">999</span> });
+        </div>
+        
+        <h4>Pattern: Removing Multiple Items</h4>
+        <div class="code-block">
+<span class="keyword">const</span> todos = [
+    { id: <span class="number">1</span>, text: <span class="string">"Buy milk"</span>, completed: <span class="keyword">true</span> },
+    { id: <span class="number">2</span>, text: <span class="string">"Write code"</span>, completed: <span class="keyword">false</span> },
+    { id: <span class="number">3</span>, text: <span class="string">"Exercise"</span>, completed: <span class="keyword">true</span> }
+];
+
+<span class="comment">// Remove all completed todos</span>
+<span class="keyword">const</span> activeTodos = todos.filter(t =&gt; !t.completed);
+console.log(activeTodos);  <span class="comment">// Only "Write code"</span>
+        </div>
+        
+        <h4>Pattern: Batch Processing</h4>
+        <div class="code-block">
+<span class="comment">// Split array into chunks</span>
+<span class="keyword">function</span> chunk(array, size) {
+    <span class="keyword">const</span> chunks = [];
+    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; array.length; i += size) {
+        chunks.push(array.slice(i, i + size));
+    }
+    <span class="keyword">return</span> chunks;
+}
+
+<span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>];
+console.log(chunk(numbers, <span class="number">3</span>));
+<span class="comment">// [[1, 2, 3], [4, 5, 6], [7, 8, 9]]</span>
+        </div>
+        
+        <h3>🎯 Array Methods Quick Decision Tree</h3>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>What do you want?</th>
+                    <th>Method</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Add elements</td>
+                    <td>push() / unshift()</td>
+                    <td>arr.push(5)</td>
+                </tr>
+                <tr>
+                    <td>Remove elements</td>
+                    <td>pop() / shift() / splice()</td>
+                    <td>arr.pop()</td>
+                </tr>
+                <tr>
+                    <td>Transform each element</td>
+                    <td>map()</td>
+                    <td>arr.map(x => x * 2)</td>
+                </tr>
+                <tr>
+                    <td>Filter elements</td>
+                    <td>filter()</td>
+                    <td>arr.filter(x => x > 5)</td>
+                </tr>
+                <tr>
+                    <td>Combine into one value</td>
+                    <td>reduce()</td>
+                    <td>arr.reduce((a,b) => a+b, 0)</td>
+                </tr>
+                <tr>
+                    <td>Do something with each</td>
+                    <td>forEach()</td>
+                    <td>arr.forEach(x => console.log(x))</td>
+                </tr>
+                <tr>
+                    <td>Find one element</td>
+                    <td>find()</td>
+                    <td>arr.find(x => x > 10)</td>
+                </tr>
+                <tr>
+                    <td>Find position</td>
+                    <td>findIndex()</td>
+                    <td>arr.findIndex(x => x > 10)</td>
+                </tr>
+                <tr>
+                    <td>Reverse order</td>
+                    <td>reverse()</td>
+                    <td>arr.reverse()</td>
+                </tr>
+                <tr>
+                    <td>Sort items</td>
+                    <td>sort()</td>
+                    <td>arr.sort((a,b) => a-b)</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        
+        <div class="page-break"></div>
+        
+        <!-- Non-Mutating Methods Section -->
+        <h2 id="non-mutating-methods">4. Non-Mutating Methods (Create New Array)</h2>
+        
+        <p>Non-mutating methods create a new array without modifying the original. Use these when you need to preserve the original array.</p>
+        
+        <!-- map() -->
+        <div class="method-card non-mutating">
+            <span class="category-badge badge-non-mutating">NON-MUTATING</span>
+            <div class="method-name">🔄 map()</div>
+            <div class="method-signature">array.map(callback(element, index, array))</div>
+            <p><strong>Purpose:</strong> Creates a new array by transforming each element using a callback function.</p>
+            <p><strong>Returns:</strong> A new array with transformed elements.</p>
+            <p><strong>Does NOT modify:</strong> The original array.</p>
+            
+            <h4>Example:</h4>
+            <div class="code-block">
+<span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>];
+<span class="keyword">const</span> doubled = numbers.map(num =&gt; num * <span class="number">2</span>);
+
+console.log(doubled);   <span class="comment">// [2, 4, 6, 8]</span>
+console.log(numbers);   <span class="comment">// [1, 2, 3, 4] - unchanged</span>
+
+<span class="comment">// Transaction categorization example</span>
+<span class="keyword">const</span> transactions = [<span class="number">23</span>, <span class="number">56</span>, <span class="number">-67</span>, <span class="number">98</span>, <span class="number">-54</span>];
+<span class="keyword">const</span> categorized = transactions.map(value =&gt; {
+    <span class="keyword">if</span> (value &lt; <span class="number">0</span>) {
+        <span class="keyword">return</span> `${value} is Debit`;
+    } <span class="keyword">else</span> {
+        <span class="keyword">return</span> `${value} is Credit`;
+    }
+});
+            </div>
+        </div>
+        
+        <!-- filter() -->
+        <div class="method-card non-mutating">
+            <span class="category-badge badge-non-mutating">NON-MUTATING</span>
+            <div class="method-name">🔍 filter()</div>
+            <div class="method-signature">array.filter(callback(element, index, array))</div>
+            <p><strong>Purpose:</strong> Creates a new array with only elements that pass a test (callback returns true).</p>
+            <p><strong>Returns:</strong> A new array with filtered elements.</p>
+            <p><strong>Does NOT modify:</strong> The original array.</p>
+            
+            <h4>Example:</h4>
+            <div class="code-block">
+<span class="keyword">const</span> numbers = [<span class="number">5</span>, <span class="number">12</span>, <span class="number">8</span>, <span class="number">130</span>, <span class="number">44</span>];
+<span class="keyword">const</span> greaterThanTen = numbers.filter(num =&gt; num &gt; <span class="number">10</span>);
+
+console.log(greaterThanTen);  <span class="comment">// [12, 130, 44]</span>
+console.log(numbers);          <span class="comment">// [5, 12, 8, 130, 44] - unchanged</span>
+
+<span class="comment">// Filter even numbers</span>
+<span class="keyword">const</span> evenNumbers = numbers.filter(num =&gt; num % <span class="number">2</span> === <span class="number">0</span>);
+console.log(evenNumbers);     <span class="comment">// [12, 8, 130, 44]</span>
+            </div>
+        </div>
+        
+        <!-- reduce() -->
+        <div class="method-card non-mutating">
+            <span class="category-badge badge-non-mutating">NON-MUTATING</span>
+            <div class="method-name">📊 reduce()</div>
+            <div class="method-signature">array.reduce(callback(accumulator, element, index, array), initialValue)</div>
+            <p><strong>Purpose:</strong> Reduces an array to a single value by applying a reducer function.</p>
+            <p><strong>Returns:</strong> The final accumulated value (can be any type).</p>
+            <p><strong>Parameters:</strong></p>
+            <ul>
+                <li><code>accumulator</code> - Carries the accumulated value</li>
+                <li><code>initialValue</code> - Starting value for accumulator</li>
+            </ul>
+            
+            <h4>Examples:</h4>
+            <div class="code-block">
+<span class="comment">// Sum all numbers</span>
+<span class="keyword">const</span> numbers = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">50</span>];
+<span class="keyword">const</span> sum = numbers.reduce((acc, num) =&gt; acc + num, <span class="number">0</span>);
+console.log(sum);  <span class="comment">// 110</span>
+
+<span class="comment">// Find minimum value</span>
+<span class="keyword">const</span> minValue = numbers.reduce((min, num) =&gt; 
+    num &lt; min ? num : min, numbers[<span class="number">0</span>]
+);
+console.log(minValue);  <span class="comment">// 10</span>
+
+<span class="comment">// Find maximum value</span>
+<span class="keyword">const</span> maxValue = numbers.reduce((max, num) =&gt; 
+    num &gt; max ? num : max, numbers[<span class="number">0</span>]
+);
+console.log(maxValue);  <span class="comment">// 50</span>
+
+<span class="comment">// Count occurrences</span>
+<span class="keyword">const</span> items = [<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"a"</span>, <span class="string">"c"</span>, <span class="string">"b"</span>, <span class="string">"a"</span>];
+<span class="keyword">const</span> count = items.reduce((acc, item) =&gt; {
+    acc[item] = (acc[item] || <span class="number">0</span>) + <span class="number">1</span>;
+    <span class="keyword">return</span> acc;
+}, {});
+console.log(count);  <span class="comment">// {a: 3, b: 2, c: 1}</span>
+            </div>
+        </div>
+        
+        <div class="page-break"></div>
+        
+        <!-- Iteration Methods Section -->
+        <h2 id="iteration-methods">5. Iteration Methods (Loop Through Array)</h2>
+        
+        <!-- forEach() -->
+        <div class="method-card">
+            <span class="category-badge badge-non-mutating">NON-MUTATING</span>
+            <div class="method-name">🔁 forEach()</div>
+            <div class="method-signature">array.forEach(callback(element, index, array))</div>
+            <p><strong>Purpose:</strong> Executes a callback function for each array element. Similar to a for loop.</p>
+            <p><strong>Returns:</strong> undefined</p>
+            <p><strong>Key Differences from map():</strong></p>
+            <ul>
+                <li>forEach() returns undefined; map() returns a new array</li>
+                <li>forEach() is used for side effects (logging, modifying DOM, etc.)</li>
+                <li>Cannot break or continue with forEach() (no early exit)</li>
+            </ul>
+            
+            <h4>Examples:</h4>
+            <div class="code-block">
+<span class="comment">// Simple iteration</span>
+<span class="keyword">const</span> numbers = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>];
+numbers.forEach(num =&gt; {
+    console.log(num);  <span class="comment">// Logs each number</span>
+});
+
+<span class="comment">// Access index and array</span>
+<span class="keyword">const</span> colors = [<span class="string">"red"</span>, <span class="string">"green"</span>, <span class="string">"blue"</span>];
+colors.forEach((color, index, arr) =&gt; {
+    console.log(`${index}: ${color}`);
+});
+<span class="comment">// Output:
+// 0: red
+// 1: green
+// 2: blue</span>
+
+<span class="comment">// Modifying array elements</span>
+<span class="keyword">let</span> nums = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];
+nums.forEach((val, idx, arr) =&gt; {
+    arr[idx] = val * <span class="number">10</span>;
+});
+console.log(nums);  <span class="comment">// [10, 20, 30]</span>
+            </div>
+        </div>
+        
+        <div class="page-break"></div>
+        
+        <!-- Search Methods Section -->
+        <h2 id="search-methods">6. Search & Find Methods</h2>
+        
+        <!-- find() -->
+        <div class="method-card non-mutating">
+            <span class="category-badge badge-non-mutating">NON-MUTATING</span>
+            <div class="method-name">🔎 find()</div>
+            <div class="method-signature">array.find(callback(element, index, array))</div>
+            <p><strong>Purpose:</strong> Returns the first element that passes a test. Returns undefined if no element passes.</p>
+            <p><strong>Returns:</strong> The first matching element or undefined.</p>
+            
+            <h4>Example:</h4>
+            <div class="code-block">
+<span class="keyword">const</span> numbers = [<span class="number">23</span>, <span class="number">45</span>, <span class="number">67</span>, <span class="number">87</span>, <span class="number">32</span>, <span class="number">45</span>];
+<span class="keyword">const</span> found = numbers.find(num =&gt; num === <span class="number">45</span>);
+
+console.log(found);  <span class="comment">// 45 (first occurrence)</span>
+
+<span class="comment">// Find first number greater than 50</span>
+<span class="keyword">const</span> firstLarge = numbers.find(num =&gt; num &gt; <span class="number">50</span>);
+console.log(firstLarge);  <span class="comment">// 67</span>
+            </div>
+        </div>
+        
+        <!-- findIndex() -->
+        <div class="method-card non-mutating">
+            <span class="category-badge badge-non-mutating">NON-MUTATING</span>
+            <div class="method-name">🔎 findIndex()</div>
+            <div class="method-signature">array.findIndex(callback(element, index, array))</div>
+            <p><strong>Purpose:</strong> Returns the index of the first element that passes a test. Returns -1 if no element passes.</p>
+            <p><strong>Returns:</strong> Index of first matching element or -1.</p>
+            
+            <h4>Example:</h4>
+            <div class="code-block">
+<span class="keyword">const</span> numbers = [<span class="number">23</span>, <span class="number">45</span>, <span class="number">67</span>, <span class="number">87</span>, <span class="number">32</span>, <span class="number">45</span>];
+<span class="keyword">const</span> index = numbers.findIndex(num =&gt; num === <span class="number">45</span>);
+
+console.log(index);  <span class="comment">// 1 (index of first 45)</span>
+
+<span class="comment">// Find index of first number greater than 50</span>
+<span class="keyword">const</span> idx = numbers.findIndex(num =&gt; num &gt; <span class="number">50</span>);
+console.log(idx);  <span class="comment">// 2 (index of 67)</span>
+            </div>
+        </div>
+        
+        <div class="page-break"></div>
+        
+        <!-- Comparison Table -->
+        <h2>Quick Comparison: Map vs Filter vs Reduce</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Method</th>
+                    <th>Purpose</th>
+                    <th>Returns</th>
+                    <th>Use Case</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>map()</strong></td>
+                    <td>Transform each element</td>
+                    <td>New array with transformed elements</td>
+                    <td>Convert array elements (multiply, extract property, etc.)</td>
+                </tr>
+                <tr>
+                    <td><strong>filter()</strong></td>
+                    <td>Select elements that pass test</td>
+                    <td>New array with filtered elements</td>
+                    <td>Get only elements that meet criteria</td>
+                </tr>
+                <tr>
+                    <td><strong>reduce()</strong></td>
+                    <td>Combine all elements into one value</td>
+                    <td>Single value (any type)</td>
+                    <td>Calculate sum, product, count, group by, etc.</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- Mutating vs Non-Mutating Table -->
+        <h2>Mutating vs Non-Mutating Methods</h2>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Mutating Methods</th>
+                    <th>Non-Mutating Methods</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>push() - Add to end</td>
+                    <td>map() - Transform elements</td>
+                </tr>
+                <tr>
+                    <td>unshift() - Add to start</td>
+                    <td>filter() - Select elements</td>
+                </tr>
+                <tr>
+                    <td>pop() - Remove from end</td>
+                    <td>reduce() - Combine elements</td>
+                </tr>
+                <tr>
+                    <td>shift() - Remove from start</td>
+                    <td>find() - Find first match</td>
+                </tr>
+                <tr>
+                    <td>splice() - Add/remove anywhere</td>
+                    <td>findIndex() - Find index</td>
+                </tr>
+                <tr>
+                    <td>reverse() - Reverse order</td>
+                    <td>forEach() - Iterate</td>
+                </tr>
+                <tr>
+                    <td>sort() - Sort elements</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="page-break"></div>
+        
+        <!-- Practical Use Cases Section -->
+        <h2 id="practical-uses">7. Practical Use Cases & Real-World Examples</h2>
+        
+        <h3>🛒 E-Commerce: Shopping Cart</h3>
+        
+        <p><strong>Scenario:</strong> Manage a shopping cart with add, remove, update quantity, and calculate total.</p>
+        
+        <div class="code-block">
+<span class="keyword">const</span> cart = [
+    { id: <span class="number">1</span>, name: <span class="string">"Laptop"</span>, price: <span class="number">1200</span>, quantity: <span class="number">1</span> },
+    { id: <span class="number">2</span>, name: <span class="string">"Mouse"</span>, price: <span class="number">25</span>, quantity: <span class="number">3</span> },
+    { id: <span class="number">3</span>, name: <span class="string">"Keyboard"</span>, price: <span class="number">75</span>, quantity: <span class="number">2</span> }
+];
+
+<span class="comment">// Add an item to cart</span>
+<span class="keyword">function</span> addToCart(items, newItem) {
+    <span class="keyword">return</span> [...items, newItem];
+}
+
+<span class="comment">// Remove an item by id</span>
+<span class="keyword">function</span> removeFromCart(items, itemId) {
+    <span class="keyword">return</span> items.filter(item =&gt; item.id !== itemId);
+}
+
+<span class="comment">// Update quantity</span>
+<span class="keyword">function</span> updateQuantity(items, itemId, newQuantity) {
+    <span class="keyword">return</span> items.map(item =&gt;
+        item.id === itemId ? { ...item, quantity: newQuantity } : item
+    );
+}
+
+<span class="comment">// Calculate total price</span>
+<span class="keyword">function</span> calculateTotal(items) {
+    <span class="keyword">return</span> items.reduce((total, item) =&gt; 
+        total + (item.price * item.quantity), <span class="number">0</span>
+    );
+}
+
+<span class="comment">// Get discount for orders over $500</span>
+<span class="keyword">function</span> applyDiscount(items) {
+    <span class="keyword">const</span> total = calculateTotal(items);
+    <span class="keyword">const</span> discountRate = total &gt; <span class="number">500</span> ? <span class="number">0.1</span> : <span class="number">0</span>;
+    <span class="keyword">return</span> total * (<span class="number">1</span> - discountRate);
+}
+
+console.log(calculateTotal(cart));  <span class="comment">// 1350</span>
+console.log(applyDiscount(cart));   <span class="comment">// 1215 (10% discount applied)</span>
+        </div>
+        
+        <div class="example-section">
+            <strong>✨ Key Takeaways:</strong>
+            <ul>
+                <li>Use <code>filter()</code> to remove items</li>
+                <li>Use <code>map()</code> to update item properties</li>
+                <li>Use <code>reduce()</code> to calculate totals</li>
+                <li>Use spread operator <code>(...)</code> to avoid mutating original array</li>
+            </ul>
+        </div>
+        
+        <h3>👥 User Management: Filtering & Searching</h3>
+        
+        <p><strong>Scenario:</strong> Filter users by role, search by name, and get statistics.</p>
+        
+        <div class="code-block">
+<span class="keyword">const</span> users = [
+    { id: <span class="number">1</span>, name: <span class="string">"Alice"</span>, role: <span class="string">"admin"</span>, age: <span class="number">28</span>, active: <span class="keyword">true</span> },
+    { id: <span class="number">2</span>, name: <span class="string">"Bob"</span>, role: <span class="string">"user"</span>, age: <span class="number">25</span>, active: <span class="keyword">true</span> },
+    { id: <span class="number">3</span>, name: <span class="string">"Charlie"</span>, role: <span class="string">"user"</span>, age: <span class="number">32</span>, active: <span class="keyword">false</span> },
+    { id: <span class="number">4</span>, name: <span class="string">"David"</span>, role: <span class="string">"moderator"</span>, age: <span class="number">29</span>, active: <span class="keyword">true</span> }
+];
+
+<span class="comment">// Get all admins</span>
+<span class="keyword">const</span> admins = users.filter(u =&gt; u.role === <span class="string">"admin"</span>);
+
+<span class="comment">// Search users by name (case-insensitive)</span>
+<span class="keyword">function</span> searchByName(users, searchTerm) {
+    <span class="keyword">return</span> users.filter(u =&gt;
+        u.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+}
+
+<span class="comment">// Get active users</span>
+<span class="keyword">const</span> activeUsers = users.filter(u =&gt; u.active);
+
+<span class="comment">// Calculate average age of active users</span>
+<span class="keyword">const</span> avgAge = activeUsers.reduce((sum, u) =&gt; sum + u.age, <span class="number">0</span>) / activeUsers.length;
+
+<span class="comment">// Group users by role</span>
+<span class="keyword">const</span> usersByRole = users.reduce((acc, user) =&gt; {
+    acc[user.role] = (acc[user.role] || []).concat(user);
+    <span class="keyword">return</span> acc;
+}, {});
+
+<span class="comment">// Get user names only</span>
+<span class="keyword">const</span> names = users.map(u =&gt; u.name);
+
+console.log(searchByName(users, <span class="string">"ch"</span>));  <span class="comment">// [{ id: 3, name: "Charlie", ... }]</span>
+console.log(avgAge);                    <span class="comment">// ~28.67</span>
+console.log(names);                     <span class="comment">// ["Alice", "Bob", "Charlie", "David"]</span>
+        </div>
+        
+        <h3>📊 Data Processing: API Response</h3>
+        
+        <p><strong>Scenario:</strong> Process data from an API response.</p>
+        
+        <div class="code-block">
+<span class="keyword">const</span> apiResponse = {
+    data: [
+        { productId: <span class="number">101</span>, name: <span class="string">"Laptop"</span>, price: <span class="number">999</span>, inStock: <span class="keyword">true</span> },
+        { productId: <span class="number">102</span>, name: <span class="string">"Phone"</span>, price: <span class="number">699</span>, inStock: <span class="keyword">false</span> },
+        { productId: <span class="number">103</span>, name: <span class="string">"Tablet"</span>, price: <span class="number">399</span>, inStock: <span class="keyword">true</span> }
+    ]
+};
+
+<span class="comment">// Get only in-stock products</span>
+<span class="keyword">const</span> inStockProducts = apiResponse.data.filter(p =&gt; p.inStock);
+
+<span class="comment">// Apply 10% discount and create formatted list</span>
+<span class="keyword">const</span> discountedProducts = inStockProducts.map(p =&gt; ({
+    ...p,
+    originalPrice: p.price,
+    discountedPrice: p.price * <span class="number">0.9</span>,
+    saving: p.price * <span class="number">0.1</span>
+}));
+
+<span class="comment">// Calculate total inventory value</span>
+<span class="keyword">const</span> inventoryValue = inStockProducts.reduce((total, p) =&gt;
+    total + p.price, <span class="number">0</span>
+);
+
+console.log(discountedProducts);
+<span class="comment">// [
+//   { productId: 101, name: "Laptop", ..., originalPrice: 999, discountedPrice: 899.1, saving: 99.9 },
+//   { productId: 103, name: "Tablet", ..., originalPrice: 399, discountedPrice: 359.1, saving: 39.9 }
+// ]</span>
+        </div>
+        
+        <h3>🔍 Common Algorithms</h3>
+        
+        <h4>Pagination</h4>
+        <div class="code-block">
+<span class="keyword">function</span> paginate(array, pageNumber, pageSize) {
+    <span class="keyword">const</span> startIndex = (pageNumber - <span class="number">1</span>) * pageSize;
+    <span class="keyword">return</span> array.slice(startIndex, startIndex + pageSize);
+}
+
+<span class="keyword">const</span> items = Array.from({length: <span class="number">25</span>}, (_, i) =&gt; `Item ${i + 1}`);
+console.log(paginate(items, <span class="number">2</span>, <span class="number">10</span>));
+<span class="comment">// ["Item 11", "Item 12", ..., "Item 20"]</span>
+        </div>
+        
+        <h4>Flatten Nested Arrays</h4>
+        <div class="code-block">
+<span class="keyword">function</span> flattenArray(arr) {
+    <span class="keyword">return</span> arr.reduce((flat, item) =&gt;
+        flat.concat(Array.isArray(item) ? flattenArray(item) : item), []
+    );
+}
+
+<span class="keyword">const</span> nested = [<span class="number">1</span>, [<span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>]], <span class="number">5</span>];
+console.log(flattenArray(nested));  <span class="comment">// [1, 2, 3, 4, 5]</span>
+        </div>
+        
+        <h4>Unique Elements</h4>
+        <div class="code-block">
+<span class="keyword">function</span> getUnique(arr) {
+    <span class="keyword">return</span> [...<span class="keyword">new</span> Set(arr)];
+}
+
+<span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">4</span>];
+console.log(getUnique(numbers));  <span class="comment">// [1, 2, 3, 4]</span>
+        </div>
+        
+        <h4>Find Maximum Value</h4>
+        <div class="code-block">
+<span class="keyword">const</span> numbers = [<span class="number">45</span>, <span class="number">23</span>, <span class="number">89</span>, <span class="number">12</span>, <span class="number">67</span>];
+
+<span class="comment">// Using reduce</span>
+<span class="keyword">const</span> max = numbers.reduce((max, num) =&gt; num &gt; max ? num : max);
+console.log(max);  <span class="comment">// 89</span>
+
+<span class="comment">// Using spread operator with Math.max</span>
+<span class="keyword">const</span> max2 = Math.max(...numbers);
+console.log(max2);  <span class="comment">// 89</span>
+        </div>
+        
+        <h4>Count Occurrences</h4>
+        <div class="code-block">
+<span class="keyword">function</span> countOccurrences(arr) {
+    <span class="keyword">return</span> arr.reduce((counts, item) =&gt; ({
+        ...counts,
+        [item]: (counts[item] || <span class="number">0</span>) + <span class="number">1</span>
+    }), {});
+}
+
+<span class="keyword">const</span> fruits = [<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"apple"</span>, <span class="string">"cherry"</span>, <span class="string">"banana"</span>, <span class="string">"apple"</span>];
+console.log(countOccurrences(fruits));
+<span class="comment">// { apple: 3, banana: 2, cherry: 1 }</span>
+        </div>
+        
+        <h3>⛓️ Method Chaining: Complex Transformations</h3>
+        
+        <p><strong>Scenario:</strong> Multi-step data processing with chained methods.</p>
+        
+        <div class="code-block">
+<span class="keyword">const</span> students = [
+    { name: <span class="string">"Alice"</span>, grade: <span class="string">"A"</span>, score: <span class="number">95</span> },
+    { name: <span class="string">"Bob"</span>, grade: <span class="string">"B"</span>, score: <span class="number">82</span> },
+    { name: <span class="string">"Charlie"</span>, grade: <span class="string">"A"</span>, score: <span class="number">88</span> },
+    { name: <span class="string">"David"</span>, grade: <span class="string">"C"</span>, score: <span class="number">75</span> },
+    { name: <span class="string">"Eve"</span>, grade: <span class="string">"A"</span>, score: <span class="number">92</span> }
+];
+
+<span class="comment">// Task: Get names of all A-grade students sorted by score (descending)</span>
+<span class="keyword">const</span> result = students
+    .filter(s =&gt; s.grade === <span class="string">"A"</span>)           <span class="comment">// [Alice, Charlie, Eve]</span>
+    .sort((a, b) =&gt; b.score - a.score)    <span class="comment">// [Alice, Eve, Charlie]</span>
+    .map(s =&gt; s.name);                     <span class="comment">// ["Alice", "Eve", "Charlie"]</span>
+
+console.log(result);  <span class="comment">// ["Alice", "Eve", "Charlie"]</span>
+
+<span class="comment">// Calculate class average for A-grade students</span>
+<span class="keyword">const</span> classAvg = students
+    .filter(s =&gt; s.grade === <span class="string">"A"</span>)
+    .reduce((sum, s) =&gt; sum + s.score, <span class="number">0</span>) / 
+    students.filter(s =&gt; s.grade === <span class="string">"A"</span>).length;
+
+console.log(classAvg);  <span class="comment">// 91.67</span>
+        </div>
+        
+        <h3>⚡ Performance Considerations</h3>
+        
+        <div class="note">
+            <strong>📌 Method Performance Notes:</strong>
+            <ul>
+                <li><strong>Mutating methods (push, pop, shift, unshift):</strong> O(1) for push/pop, O(n) for shift/unshift</li>
+                <li><strong>Splice():</strong> O(n) because it needs to reindex elements</li>
+                <li><strong>Iteration methods (map, filter, reduce):</strong> O(n) - must loop through all elements</li>
+                <li><strong>Find/FindIndex():</strong> O(n) average, O(1) best case (first element)</li>
+                <li><strong>Sort():</strong> O(n log n) average case</li>
+            </ul>
+        </div>
+        
+        <div class="tip">
+            <strong>💡 Performance Tips:</strong>
+            <ul>
+                <li>Avoid unnecessary chaining when working with large arrays</li>
+                <li>Use <code>find()</code> instead of <code>filter()[0]</code> when looking for one item</li>
+                <li>Consider breaking early with <code>some()</code> or <code>every()</code> when checking conditions</li>
+                <li>Use <code>splice()</code> sparingly - it's slower than creating a new array</li>
+                <li>For frequently accessed data, consider Set or Map instead of array</li>
+            </ul>
+        </div>
+        
+        <div class="page-break"></div>
+        
+        <!-- Best Practices Section -->
+        <h2 id="best-practices">8. Best Practices & Quick Reference</h2>
+        
+        <h3>When to Use Each Method</h3>
+        
+        <h4>Use push() / unshift():</h4>
+        <ul>
+            <li>When you need to add elements to an array permanently</li>
+            <li>Building a list dynamically</li>
+        </ul>
+        
+        <h4>Use pop() / shift():</h4>
+        <ul>
+            <li>When you need to remove elements from end/start</li>
+            <li>Implementing stack (push/pop) or queue (shift/push)</li>
+        </ul>
+        
+        <h4>Use splice():</h4>
+        <ul>
+            <li>When you need fine control over where to add/remove elements</li>
+            <li>Replacing elements at specific positions</li>
+        </ul>
+        
+        <h4>Use map():</h4>
+        <ul>
+            <li>When you need to transform every element</li>
+            <li>When you want a new array without modifying original</li>
+            <li>Example: Converting temperatures from C to F, extracting properties</li>
+        </ul>
+        
+        <h4>Use filter():</h4>
+        <ul>
+            <li>When you need only elements that meet a condition</li>
+            <li>Example: Getting all numbers above 50, all adults from person list</li>
+        </ul>
+        
+        <h4>Use reduce():</h4>
+        <ul>
+            <li>When you need to combine all elements into one result</li>
+            <li>Calculating sum, product, average, counting, grouping</li>
+        </ul>
+        
+        <h4>Use forEach():</h4>
+        <ul>
+            <li>When you need to perform side effects (logging, DOM updates)</li>
+            <li>When you don't need a return value</li>
+        </ul>
+        
+        <div class="tip">
+            <strong>💡 Pro Tip:</strong> You can chain methods together:
+            <div class="code-block">
+<span class="keyword">const</span> numbers = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];
+<span class="keyword">const</span> result = numbers
+    .filter(n =&gt; n &gt; <span class="number">2</span>)      <span class="comment">// [3, 4, 5]</span>
+    .map(n =&gt; n * <span class="number">2</span>)         <span class="comment">// [6, 8, 10]</span>
+    .reduce((acc, n) =&gt; acc + n, <span class="number">0</span>); <span class="comment">// 24</span>
+
+console.log(result);  <span class="comment">// 24</span>
+            </div>
+        </div>
+        
+        <h3>Common Mistakes to Avoid</h3>
+        
+        <div class="important">
+            <strong>❌ Mistake 1: Using default sort() for numbers</strong>
+            <div class="code-block">
+<span class="comment">// WRONG: sorts as strings</span>
+[<span class="number">10</span>, <span class="number">5</span>, <span class="number">100</span>].sort();  <span class="comment">// [10, 100, 5] ❌</span>
+
+<span class="comment">// CORRECT: use compare function</span>
+[<span class="number">10</span>, <span class="number">5</span>, <span class="number">100</span>].sort((a, b) =&gt; a - b);  <span class="comment">// [5, 10, 100] ✓</span>
+            </div>
+        </div>
+        
+        <div class="important">
+            <strong>❌ Mistake 2: Expecting forEach() to return an array</strong>
+            <div class="code-block">
+<span class="comment">// WRONG: forEach returns undefined</span>
+<span class="keyword">const</span> doubled = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].forEach(n =&gt; n * <span class="number">2</span>);
+console.log(doubled);  <span class="comment">// undefined ❌</span>
+
+<span class="comment">// CORRECT: use map()</span>
+<span class="keyword">const</span> doubled = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>].map(n =&gt; n * <span class="number">2</span>);
+console.log(doubled);  <span class="comment">// [2, 4, 6] ✓</span>
+            </div>
+        </div>
+        
+        <div class="important">
+            <strong>❌ Mistake 3: Mutating arrays when you shouldn't</strong>
+            <div class="code-block">
+<span class="comment">// WRONG: modifies original</span>
+<span class="keyword">const</span> original = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];
+<span class="keyword">const</span> modified = original.reverse();
+console.log(original);  <span class="comment">// [3, 2, 1] - changed! ❌</span>
+
+<span class="comment">// BETTER: use spread operator</span>
+<span class="keyword">const</span> original = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];
+<span class="keyword">const</span> reversed = [...original].reverse();
+console.log(original);  <span class="comment">// [1, 2, 3] - unchanged ✓</span>
+            </div>
+        </div>
+        
+        <h3>Method Reference Cheatsheet</h3>
+        
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Method</th>
+                    <th>Type</th>
+                    <th>Syntax</th>
+                    <th>Returns</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>push()</td>
+                    <td>Mutating</td>
+                    <td>array.push(...elements)</td>
+                    <td>New length</td>
+                </tr>
+                <tr>
+                    <td>pop()</td>
+                    <td>Mutating</td>
+                    <td>array.pop()</td>
+                    <td>Removed element</td>
+                </tr>
+                <tr>
+                    <td>unshift()</td>
+                    <td>Mutating</td>
+                    <td>array.unshift(...elements)</td>
+                    <td>New length</td>
+                </tr>
+                <tr>
+                    <td>shift()</td>
+                    <td>Mutating</td>
+                    <td>array.shift()</td>
+                    <td>Removed element</td>
+                </tr>
+                <tr>
+                    <td>splice()</td>
+                    <td>Mutating</td>
+                    <td>array.splice(start, deleteCount, ...items)</td>
+                    <td>Removed elements</td>
+                </tr>
+                <tr>
+                    <td>reverse()</td>
+                    <td>Mutating</td>
+                    <td>array.reverse()</td>
+                    <td>Reversed array</td>
+                </tr>
+                <tr>
+                    <td>sort()</td>
+                    <td>Mutating</td>
+                    <td>array.sort([compareFn])</td>
+                    <td>Sorted array</td>
+                </tr>
+                <tr>
+                    <td>map()</td>
+                    <td>Non-mutating</td>
+                    <td>array.map(callback)</td>
+                    <td>New array</td>
+                </tr>
+                <tr>
+                    <td>filter()</td>
+                    <td>Non-mutating</td>
+                    <td>array.filter(callback)</td>
+                    <td>New array</td>
+                </tr>
+                <tr>
+                    <td>reduce()</td>
+                    <td>Non-mutating</td>
+                    <td>array.reduce(callback, initialValue)</td>
+                    <td>Single value</td>
+                </tr>
+                <tr>
+                    <td>forEach()</td>
+                    <td>Non-mutating</td>
+                    <td>array.forEach(callback)</td>
+                    <td>undefined</td>
+                </tr>
+                <tr>
+                    <td>find()</td>
+                    <td>Non-mutating</td>
+                    <td>array.find(callback)</td>
+                    <td>First match or undefined</td>
+                </tr>
+                <tr>
+                    <td>findIndex()</td>
+                    <td>Non-mutating</td>
+                    <td>array.findIndex(callback)</td>
+                    <td>Index or -1</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>JavaScript Arrays Comprehensive Notes</p>
+            <p>Created for learning and reference purposes</p>
+            <p>Last Updated: April 2026</p>
+        </div>
+    </div>
+</body>
+</html>
