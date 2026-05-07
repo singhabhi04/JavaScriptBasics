@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Comprehensive Revision Notes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 20px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        
+        h2 {
+            color: #2980b9;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+            font-size: 1.8em;
+            page-break-after: avoid;
+        }
+        
+        h3 {
+            color: #3498db;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            page-break-after: avoid;
+        }
+        
+        h4 {
+            color: #5d6d7b;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        
+        .important {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .note {
+            background-color: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .tip {
+            background-color: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .warning {
+            background-color: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #e83e8c;
+        }
+        
+        pre {
+            background-color: #282c34;
+            color: #abb2bf;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-size: 0.9em;
+            line-height: 1.5;
+            page-break-inside: avoid;
+        }
+        
+        pre code {
+            color: #abb2bf;
+            padding: 0;
+            background-color: transparent;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            page-break-inside: avoid;
+        }
+        
+        th {
+            background-color: #3498db;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            border: 1px solid #ddd;
+            padding: 12px;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        tr:hover {
+            background-color: #f0f0f0;
+        }
+        
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .toc {
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        .toc h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        
+        .toc ul {
+            list-style-type: none;
+            margin-left: 0;
+        }
+        
+        .toc li {
+            margin-bottom: 5px;
+        }
+        
+        .toc a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .toc a:hover {
+            text-decoration: underline;
+        }
+        
+        .key-point {
+            border-left: 4px solid #e74c3c;
+            padding-left: 15px;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+        
+        .comparison {
+            margin: 20px 0;
+        }
+        
+        .do {
+            background-color: #d4edda;
+            padding: 10px 15px;
+            margin: 5px 0;
+            border-radius: 3px;
+            border-left: 4px solid #28a745;
+        }
+        
+        .dont {
+            background-color: #f8d7da;
+            padding: 10px 15px;
+            margin: 5px 0;
+            border-radius: 3px;
+            border-left: 4px solid #dc3545;
+        }
+        
+        .print-only {
+            display: none;
+        }
+        
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+            
+            .container {
+                max-width: 100%;
+                box-shadow: none;
+                padding: 0;
+            }
+            
+            .print-only {
+                display: block;
+            }
+            
+            h2 {
+                page-break-after: avoid;
+            }
+            
+            pre {
+                page-break-inside: avoid;
+            }
+            
+            table {
+                page-break-inside: avoid;
+            }
+            
+            .no-print {
+                display: none;
+            }
+        }
+        
+        .emoji {
+            margin-right: 5px;
+        }
+        
+        .footer {
+            text-align: center;
+            color: #7f8c8d;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 2px solid #ecf0f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Header -->
+        <h1><span class="emoji">🚀</span>JavaScript Comprehensive Revision Notes</h1>
+        <p class="subtitle">Quick Reference & Exam Preparation Guide</p>
+        
+        <!-- Print Date -->
+        <p class="print-only" style="text-align: center; color: #999; margin-bottom: 30px;">
+            Printed on: <span id="printDate"></span>
+        </p>
+        
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h3><span class="emoji">📋</span>Table of Contents</h3>
+            <ul>
+                <li><a href="#section1">1. JavaScript Basics</a></li>
+                <li><a href="#section2">2. Loops & Conditionals</a></li>
+                <li><a href="#section3">3. Arrays & Array Methods</a></li>
+                <li><a href="#section4">4. Strings & String Methods</a></li>
+                <li><a href="#section5">5. Functions & Advanced Concepts</a></li>
+                <li><a href="#section6">6. Practice Problems</a></li>
+                <li><a href="#section7">7. Quick Reference</a></li>
+            </ul>
+        </div>
+        
+        <!-- Section 1: JavaScript Basics -->
+        <h2 id="section1"><span class="emoji">1️⃣</span> JavaScript Basics</h2>
+        
+        <h3>Primitive Data Types</h3>
+        <p>JavaScript has 7 primitive data types that cannot be changed once created:</p>
+        <pre><code>// String
+let name = "Abhishek Singh";
+console.log(typeof name); // "string"
+
+// Number (int or float)
+let age = 35;
+let price = 99.99;
+console.log(typeof age); // "number"
+
+// Boolean
+let isMarried = true;
+console.log(typeof isMarried); // "boolean"
+
+// Undefined - variable declared but not assigned
+let lastname;
+console.log(lastname); // undefined
+console.log(typeof lastname); // "undefined"
+
+// Null - represents intentional absence of value
+let webdriver = null;
+console.log(typeof webdriver); // "object" (bug in JS!)</code></pre>
+
+        <div class="key-point">
+            <strong>Key Points:</strong>
+            <ul>
+                <li><code>undefined</code> = declared but not assigned</li>
+                <li><code>null</code> = intentional empty value</li>
+                <li><code>typeof</code> operator checks data type</li>
+                <li><code>typeof null</code> returns "object" (known JS quirk)</li>
+            </ul>
+        </div>
+        
+        <h3>Type Conversion</h3>
+        <p><strong>Explicit Type Conversion:</strong></p>
+        <pre><code>// String Conversion
+String(123);           // "123"
+String(true);          // "true"
+
+// Number Conversion
+Number("42");          // 42
+Number(true);          // 1
+Number(false);         // 0
+
+// Boolean Conversion
+Boolean(1);            // true
+Boolean(0);            // false
+Boolean("");           // false</code></pre>
+
+        <p><strong>Type Coercion (Implicit Conversion):</strong></p>
+        <pre><code>// String Coercion (+ operator)
+console.log("5" + 2);      // "52" (concatenation)
+console.log(2 + 1 + "5");  // "35" (math first, then concat)
+
+// Numeric Coercion (-, *, /, %)
+console.log("10" - 2);     // 8
+console.log("10" * 2);     // 20</code></pre>
+
+        <h3>Equality Operations</h3>
+        <pre><code>// Loose Equality (==) - COERCES types
+console.log(5 == "5");      // true
+console.log(0 == false);    // true
+
+// Strict Equality (===) - NO coercion
+console.log(5 === "5");     // false
+console.log(0 === false);   // false
+
+// ✅ BEST PRACTICE: Always use ===</code></pre>
+
+        <div class="important">
+            <strong>Falsy vs Truthy:</strong><br>
+            <strong>8 Falsy Values:</strong> false, 0, -0, 0n, "", null, undefined, NaN<br>
+            <strong>Everything else is Truthy</strong>
+        </div>
+
+        <h3>Variable Declaration: let, const, var</h3>
+        <table>
+            <tr>
+                <th>Feature</th>
+                <th>var</th>
+                <th>let</th>
+                <th>const</th>
+            </tr>
+            <tr>
+                <td><strong>Scope</strong></td>
+                <td>Function</td>
+                <td>Block</td>
+                <td>Block</td>
+            </tr>
+            <tr>
+                <td><strong>Redeclaration</strong></td>
+                <td>✅</td>
+                <td>❌</td>
+                <td>❌</td>
+            </tr>
+            <tr>
+                <td><strong>Reassignment</strong></td>
+                <td>✅</td>
+                <td>✅</td>
+                <td>❌</td>
+            </tr>
+            <tr>
+                <td><strong>Use</strong></td>
+                <td>Avoid</td>
+                <td>Default</td>
+                <td>When immutable</td>
+            </tr>
+        </table>
+
+        <pre><code>// const - cannot reassign
+const PI = 3.14159;
+PI = 3.14; // TypeError
+
+// BUT: const object properties CAN be modified
+const user = { name: "Abhishek" };
+user.name = "Kumar"; // ✅ Allowed
+user = {}; // ❌ Error</code></pre>
+
+        <!-- Section 2: Loops & Conditionals -->
+        <h2 id="section2"><span class="emoji">2️⃣</span> Loops & Conditionals</h2>
+
+        <h3>Conditional Statements</h3>
+        <pre><code>// if/else if/else
+if (age <= 18) {
+    console.log("Child");
+} else if (age < 60) {
+    console.log("Adult");
+} else {
+    console.log("Senior");
+}
+
+// switch/case
+switch (day) {
+    case "Mon":
+        console.log("Monday");
+        break; // Don't forget break!
+    default:
+        console.log("Unknown");
+}
+
+// Ternary operator
+age >= 18 ? "Adult" : "Minor"</code></pre>
+
+        <h3>Loops</h3>
+        <pre><code>// for loop
+for (let i = 0; i < 5; i++) {
+    console.log(i);
+}
+
+// for...of loop (iterate VALUES)
+for (const fruit of fruits) {
+    console.log(fruit);
+}
+
+// forEach loop
+fruits.forEach((fruit, index) => {
+    console.log(index, fruit);
+});
+
+// while loop
+while (i < 10) {
+    console.log(i);
+    i++;
+}</code></pre>
+
+        <div class="note">
+            <strong>Loop Comparison:</strong>
+            <ul>
+                <li><code>for</code> - Classic loop with index</li>
+                <li><code>for...of</code> - Iterate array values (not indexes)</li>
+                <li><code>forEach</code> - Pass callback for each element</li>
+                <li><code>while</code> - Loop while condition is true</li>
+            </ul>
+        </div>
+
+        <!-- Section 3: Arrays -->
+        <h2 id="section3"><span class="emoji">3️⃣</span> Arrays & Array Methods</h2>
+
+        <h3>Array Basics</h3>
+        <pre><code>const arr = [10, 20, 30];
+console.log(arr.length);    // 3
+console.log(arr[0]);        // 10
+console.log(arr.at(-1));    // 30 (last element)</code></pre>
+
+        <h3>Array Methods Quick Reference</h3>
+        <table>
+            <tr>
+                <th>Method</th>
+                <th>Mutates?</th>
+                <th>Returns</th>
+                <th>Use Case</th>
+            </tr>
+            <tr>
+                <td><code>push()</code></td>
+                <td>✅ Yes</td>
+                <td>New length</td>
+                <td>Add to end</td>
+            </tr>
+            <tr>
+                <td><code>pop()</code></td>
+                <td>✅ Yes</td>
+                <td>Removed element</td>
+                <td>Remove from end</td>
+            </tr>
+            <tr>
+                <td><code>shift()</code></td>
+                <td>✅ Yes</td>
+                <td>Removed element</td>
+                <td>Remove from start</td>
+            </tr>
+            <tr>
+                <td><code>slice()</code></td>
+                <td>❌ No</td>
+                <td>New array</td>
+                <td>Extract portion</td>
+            </tr>
+            <tr>
+                <td><code>map()</code></td>
+                <td>❌ No</td>
+                <td>New array</td>
+                <td>Transform elements</td>
+            </tr>
+            <tr>
+                <td><code>filter()</code></td>
+                <td>❌ No</td>
+                <td>New array</td>
+                <td>Keep matching</td>
+            </tr>
+            <tr>
+                <td><code>reduce()</code></td>
+                <td>❌ No</td>
+                <td>Single value</td>
+                <td>Accumulate</td>
+            </tr>
+            <tr>
+                <td><code>sort()</code></td>
+                <td>✅ Yes</td>
+                <td>Sorted array</td>
+                <td>Sort elements</td>
+            </tr>
+        </table>
+
+        <h3>Transformation Methods</h3>
+        <pre><code>// map() - Transform each element
+const numbers = [1, 2, 3];
+const doubled = numbers.map(x => x * 2);
+console.log(doubled); // [2, 4, 6]
+
+// filter() - Keep matching elements
+const large = numbers.filter(x => x > 1);
+console.log(large); // [2, 3]
+
+// reduce() - Accumulate to single value
+const sum = numbers.reduce((acc, x) => acc + x, 0);
+console.log(sum); // 6</code></pre>
+
+        <h3>Sorting Arrays</h3>
+        <pre><code>const numbers = [10, 5, 100, 2];
+
+// ❌ WRONG: Default alphabetical sort
+numbers.sort(); // [10, 100, 2, 5]
+
+// ✅ CORRECT: Ascending numeric sort
+numbers.sort((a, b) => a - b); // [2, 5, 10, 100]
+
+// Descending numeric sort
+numbers.sort((a, b) => b - a); // [100, 10, 5, 2]</code></pre>
+
+        <!-- Section 4: Strings -->
+        <h2 id="section4"><span class="emoji">4️⃣</span> Strings & String Methods</h2>
+
+        <h3>String Creation & Access</h3>
+        <pre><code>const str = "Hello World";
+
+console.log(str.length);           // 11
+console.log(str[0]);               // "H"
+console.log(str.charAt(0));        // "H"
+console.log(str.at(-1));           // "d" (last char)</code></pre>
+
+        <h3>String Methods</h3>
+        <table>
+            <tr>
+                <th>Method</th>
+                <th>Example</th>
+                <th>Returns</th>
+            </tr>
+            <tr>
+                <td><code>includes()</code></td>
+                <td>str.includes("World")</td>
+                <td>Boolean</td>
+            </tr>
+            <tr>
+                <td><code>indexOf()</code></td>
+                <td>str.indexOf("o")</td>
+                <td>Index or -1</td>
+            </tr>
+            <tr>
+                <td><code>slice()</code></td>
+                <td>str.slice(0, 5)</td>
+                <td>"Hello"</td>
+            </tr>
+            <tr>
+                <td><code>toUpperCase()</code></td>
+                <td>str.toUpperCase()</td>
+                <td>"HELLO WORLD"</td>
+            </tr>
+            <tr>
+                <td><code>toLowerCase()</code></td>
+                <td>str.toLowerCase()</td>
+                <td>"hello world"</td>
+            </tr>
+            <tr>
+                <td><code>trim()</code></td>
+                <td>"  hi  ".trim()</td>
+                <td>"hi"</td>
+            </tr>
+            <tr>
+                <td><code>split()</code></td>
+                <td>str.split(" ")</td>
+                <td>["Hello", "World"]</td>
+            </tr>
+            <tr>
+                <td><code>replace()</code></td>
+                <td>str.replace("World", "JS")</td>
+                <td>"Hello JS"</td>
+            </tr>
+        </table>
+
+        <h3>Template Literals</h3>
+        <pre><code>const name = "Abhishek";
+const age = 35;
+
+// Template literals with ${}
+const msg = `My name is ${name} and I am ${age}`;
+
+// Multi-line strings
+const multi = `
+    Line 1
+    Line 2
+`;
+
+// Expressions
+const result = `${age > 30 ? "Over 30" : "Under 30"}`;</code></pre>
+
+        <!-- Section 5: Functions -->
+        <h2 id="section5"><span class="emoji">5️⃣</span> Functions & Advanced Concepts</h2>
+
+        <h3>Function Declaration Styles</h3>
+        <pre><code>// Function Declaration
+function add(a, b) {
+    return a + b;
+}
+
+// Function Expression
+const subtract = function(a, b) {
+    return a - b;
+};
+
+// Arrow Function (ES6)
+const multiply = (a, b) => a * b;
+
+// Single parameter (optional parentheses)
+const square = x => x * x;
+
+// No parameters
+const random = () => Math.random();</code></pre>
+
+        <h3>Callbacks</h3>
+        <p>A callback is a function passed to another function, executed later:</p>
+        <pre><code>// Simple callback
+function handleCompletion(callback) {
+    console.log("Work done!");
+    callback("Success");
+}
+
+// Asynchronous callback
+function fetchUser(userId, callback) {
+    setTimeout(() => {
+        const user = { id: userId, name: "Abhishek" };
+        callback(user);
+    }, 2000);
+}
+
+fetchUser(1, (user) => {
+    console.log("User:", user);
+});</code></pre>
+
+        <h3>Higher-Order Functions</h3>
+        <p>A function that takes another function or returns a function:</p>
+        <pre><code>// HOF that takes a function
+function calculate(a, b, operation) {
+    return operation(a, b);
+}
+
+calculate(10, 5, (x, y) => x + y); // 15
+calculate(10, 5, (x, y) => x - y); // 5
+
+// HOF that returns a function
+function createDiscount(percent) {
+    return function(price) {
+        return price - (price * percent / 100);
+    };
+}
+
+const tenOff = createDiscount(10);
+console.log(tenOff(100)); // 90</code></pre>
+
+        <h3>Closures</h3>
+        <p>A function remembers variables from its outer scope:</p>
+        <pre><code>function makeCounter() {
+    let count = 0;
+    
+    return function() {
+        count++;
+        return count;
+    };
+}
+
+const counter = makeCounter();
+console.log(counter()); // 1
+console.log(counter()); // 2
+console.log(counter()); // 3
+
+// Each counter has its own closure
+const counter2 = makeCounter();
+console.log(counter2()); // 1</code></pre>
+
+        <!-- Section 6: Practice Problems -->
+        <h2 id="section6"><span class="emoji">6️⃣</span> Practice Problems</h2>
+
+        <h3>Problem 1: Sum Array Using Reduce</h3>
+        <pre><code>const numbers = [1, 2, 3, 4, 5];
+const sum = numbers.reduce((acc, val) => acc + val, 0);
+console.log(sum); // 15</code></pre>
+
+        <h3>Problem 2: Extract Initials</h3>
+        <pre><code>const names = ['Abhishek', 'Kumar', 'Singh'];
+const initials = names.map(n => n[0]).join("");
+console.log(initials); // "AKS"</code></pre>
+
+        <h3>Problem 3: Reverse a Number</h3>
+        <pre><code>let num = 12345;
+let reversed = 0;
+while (num > 0) {
+    reversed = reversed * 10 + (num % 10);
+    num = Math.floor(num / 10);
+}
+console.log(reversed); // 54321</code></pre>
+
+        <h3>Problem 4: Filter and Transform</h3>
+        <pre><code>const transactions = [100, -50, 200, -75];
+const debits = transactions
+    .filter(t => t < 0)
+    .map(t => ({ amount: Math.abs(t), type: "Debit" }));
+console.log(debits);</code></pre>
+
+        <!-- Section 7: Quick Reference -->
+        <h2 id="section7"><span class="emoji">7️⃣</span> Quick Reference</h2>
+
+        <h3>Do's</h3>
+        <div class="do">✅ Use <code>===</code> instead of <code>==</code></div>
+        <div class="do">✅ Use <code>const</code> by default, <code>let</code> when reassignment needed</div>
+        <div class="do">✅ Use <code>map()</code>, <code>filter()</code>, <code>reduce()</code> for array operations</div>
+        <div class="do">✅ Use template literals with backticks</div>
+        <div class="do">✅ Use arrow functions for conciseness</div>
+
+        <h3>Don'ts</h3>
+        <div class="dont">❌ Don't forget <code>break</code> in switch statements</div>
+        <div class="dont">❌ Don't mix up <code>slice()</code> and <code>splice()</code></div>
+        <div class="dont">❌ Don't use <code>==</code> for comparisons</div>
+        <div class="dont">❌ Don't assume <code>sort()</code> works on numbers</div>
+        <div class="dont">❌ Don't nest callbacks too deeply</div>
+
+        <h3>Falsy Values (IMPORTANT!)</h3>
+        <pre><code>false       // boolean false
+0           // number zero
+-0          // negative zero
+0n          // BigInt zero
+""          // empty string
+null        // intentional empty
+undefined   // no value
+NaN         // not a number
+
+// REMEMBER: Everything else is TRUTHY!</code></pre>
+
+        <h3>Common Mistakes</h3>
+        <pre><code>// ❌ WRONG: Sorting numbers as strings
+[10, 5, 100, 2].sort(); // [10, 100, 2, 5]
+
+// ✅ CORRECT: Use comparator
+[10, 5, 100, 2].sort((a,b) => a-b); // [2, 5, 10, 100]
+
+// ❌ WRONG: Confusing slice and splice
+arr.slice(1, 3);   // Non-mutating, returns new array
+arr.splice(1, 3);  // Mutating, modifies original
+
+// ✅ CORRECT: Always use ===
+if (x === 5) { }   // Good
+if (x == 5) { }    // Bad
+
+// ❌ typeof null returns "object" (bug!)
+typeof null // "object"
+x === null  // Correct way to check</code></pre>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p><strong>JavaScript Comprehensive Revision Notes</strong></p>
+            <p>Created for Exam Preparation | Use Wisely</p>
+            <p>📌 Print-friendly version available</p>
+        </div>
+
+    </div>
+
+    <script>
+        // Add current date to print version
+        document.getElementById('printDate').textContent = new Date().toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    </script>
+</body>
+</html>
